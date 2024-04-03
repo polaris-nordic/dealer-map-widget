@@ -1,0 +1,62 @@
+{
+  "name": "dealer-map-widget",
+  "version": "1.0.01",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preview": "npm-run-all --parallel sync startwp tailwindwatch",
+    "sync": "browser-sync start -p 'https://cormate.tst/prek-dealer-map-widget/' --files '**/*.php' 'build/*.js' 'build/*.css'",
+    "build": "npm-run-all --sequential buildwp tailwindbuild",
+    "buildwp": "wp-scripts build",
+    "tailwindbuild": "tailwindcss -i ./src/index.scss -o ./build/index.css --postcss --minify",
+    "tailwindwatch": "tailwindcss -i ./src/index.scss -o ./build/index.css --watch --postcss --minify",
+    "startwp": "wp-scripts start",
+    "start": "npm-run-all --parallel startwp tailwindwatch",
+    "plugin-zip": "pnpm build && wp-scripts plugin-zip"
+  },
+  "files": [
+    "*.php",
+    "/extensions",
+    "/widgets",
+    "/actions",
+    "/build"
+  ],
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/google.maps": "^3.54.10",
+    "@types/gtag.js": "^0.0.19",
+    "@types/lodash": "^4.14.202",
+    "@wordpress/core-data": "^6.7.0",
+    "@wordpress/data": "^9.0.0",
+    "@wordpress/html-entities": "^3.30.0",
+    "@wordpress/scripts": "^26.1.0",
+    "browser-sync": "^2.29.1",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "tailwindcss": "^3.3.1",
+    "ts-loader": "^9.4.2",
+    "tsconfig-paths-webpack-plugin": "^4.0.1",
+    "typescript": "^5.0.3",
+    "yarn-run-all": "^3.1.1"
+  },
+  "dependencies": {
+    "@googlemaps/markerclusterer": "^2.5.3",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.1.1",
+    "@vis.gl/react-google-maps": "^0.7.1",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.11.10",
+    "lodash": "^4.17.21",
+    "react-google-autocomplete": "^2.7.3",
+    "react-number-format": "^5.2.2",
+    "react-simple-i18n": "^1.4.0",
+    "swr": "^2.2.4",
+    "xml-js": "^1.6.11"
+  }
+}

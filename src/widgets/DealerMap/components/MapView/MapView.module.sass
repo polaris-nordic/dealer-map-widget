@@ -1,0 +1,19 @@
+.MapView
+  @apply w-full h-full relative
+
+  .Map
+    @apply w-full h-full z-10 outline-0 ring-0
+
+  .Searching
+    @apply absolute top-4 -translate-x-1/2 left-1/2 z-20
+    @apply inline-flex items-center px-4 py-1.5 font-semibold leading-6 text-xs shadow-md rounded-full
+    @apply bg-white
+    @apply opacity-0 -translate-y-10 invisible
+    @apply transition-all duration-500 ease-in-out
+
+    .Spinner
+      @apply animate-spin -ml-1 mr-3 h-4 w-4 text-black
+      animation-duration: .8s
+
+    &.IsSearching
+      @apply opacity-100 translate-y-0 visible

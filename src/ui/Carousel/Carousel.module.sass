@@ -1,0 +1,12 @@
+.Carousel
+  @apply relative w-full flex snap-mandatory
+  // @apply touch-pan-x
+
+  &.Horizontal
+    @apply flex-row overflow-x-auto snap-x
+
+  &.Vertical
+    @apply flex-col h-full overflow-y-auto snap-y
+
+  &::-webkit-scrollbar
+    @apply hidden

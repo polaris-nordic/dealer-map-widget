@@ -1,0 +1,14 @@
+.DealerMap
+  @apply w-full flex flex-col items-start gap-4
+
+  @screen md
+    @apply flex-row h-full
+
+  .MapContainer
+    @apply h-full w-full flex-grow flex-shrink-0 order-2
+
+    @screen md
+      @apply w-auto
+
+  .Locations
+    @apply h-full w-[320px] order-3 flex-shrink-0
