@@ -8,6 +8,7 @@ import {useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 import {ResultCard} from "~/widgets/DealerMap/components";
 import {MagnifyingGlassIcon} from "@heroicons/react/24/outline";
 import { useScrollCarousel } from '~/hooks';
+import {take} from 'lodash';
 
 /* ------------------------------ *
  * Props
@@ -111,7 +112,7 @@ export default function Sidebar(props: SidebarProps) {
                 activeIndex={activeDealerIndex}
                 direction="vertical"
             >
-                { activeDealerIndex > -1 ? dealers.map((dealer: IDealer, i: number) => {
+                { activeDealerIndex > -1 ? take<IDealer[]>(dealers, 10).map((dealer: IDealer, i: number) => {
                     return (
                         <ResultCard key={`Dealer-${dealer.id}`} dealer={dealer}/>
                     )

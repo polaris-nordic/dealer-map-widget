@@ -24,7 +24,10 @@
       "~/*": [
         "src/*"
       ]
-    }
+    },
+    "types": [
+      "@vis.gl/react-google-maps"
+    ]
   },
   "include": [
     "src"

@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useRef, useState, useCallback} from 'react';
 import styles from './Markers.module.sass'
 import {classNames} from '~/lib/helpers'
-import {AdvancedMarker, Marker as MapMarker, Pin, useMap} from '@vis.gl/react-google-maps';
+import {AdvancedMarker, Pin, useMap} from '@vis.gl/react-google-maps';
 import {MarkerClusterer} from '@googlemaps/markerclusterer';
 import type {Marker} from '@googlemaps/markerclusterer';
 import {MapPoint} from "~/types";
@@ -62,11 +62,12 @@ export default function Markers(props: MarkersProps) {
         clusterer.current?.addMarkers(Object.values(markers));
     }, [map, markers, points]);
 
+    // This function is running over 45 000 times. It's not good. Refactor please.
     const setMarkerRef = useCallback((marker: Marker | null, key: string) => {
-        if (marker && markers[key]) return;
-        if (!marker && !markers[key]) return;
+        if (!marker) return;
+        if (markers[key]) return;
 
-        // console.log('setMarkerRef')
+        console.log('Setting marker')
 
         setMarkers((prev: any) => {
             if (marker) {
@@ -101,23 +102,17 @@ export default function Markers(props: MarkersProps) {
      * ----------------------------- */
 
     const markerCluster = useMemo(() => {
-        {/** <AdvancedMarker
+        return (
+            <>
+                {points.map((point: MapPoint, i: number) => (
+                    <AdvancedMarker
                         position={point}
-                        key={`m_${point.key}`}
+                        key={point.key}
                         ref={(marker: any) => setMarkerRef(marker, point.key)}
                         onClick={(marker: any) => onMarkerClick && onMarkerClick(marker, point)}
                     >
                         <div className={markerClasses}></div>
-                    </AdvancedMarker> */}
-        return (
-            <>
-                {points.map((point: MapPoint, i: number) => (
-                    <MapMarker
-                        position={point}
-                        key={`m_${point.key}`}
-                        ref={(marker: any) => setMarkerRef(marker, point.key)}
-                        onClick={(marker: any) => onMarkerClick && onMarkerClick(marker, point)}
-                    />
+                    </AdvancedMarker>
                 ))}
             </>
         )

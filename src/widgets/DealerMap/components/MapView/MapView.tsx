@@ -3,7 +3,7 @@ import styles from './MapView.module.sass'
 import {classNames} from '~/lib/helpers'
 import {useWidget} from "~/context";
 import {Markers} from "~/widgets/DealerMap/components";
-import {InfoWindow, Map} from "@vis.gl/react-google-maps";
+import {Map} from "@vis.gl/react-google-maps";
 import {mapStyle} from "~/widgets/DealerMap/mapStyles";
 import {MapPoint} from "~/types";
 import {Marker} from "@googlemaps/markerclusterer";
@@ -48,20 +48,21 @@ export default function MapView(props: MapViewProps) {
      * Return
      * ----------------------------- */
 
-    const selectedMapStyle = mapStyle[widgetSettings.map.style as unknown as string] as google.maps.MapTypeStyle[];
+    const selectedMapStyle = mapStyle[widgetSettings.map.style as keyof typeof mapStyle] as google.maps.MapTypeStyle[];
 
     return (
         <div className={mapviewClasses}>
             <Map
-                mapId={mapId}
+                mapId={'bf51a910020fa25a'}
                 gestureHandling={'greedy'}
                 defaultZoom={widgetSettings.map.zoom}
                 disableDefaultUI={true}
                 className={styles.Map}
+                defaultCenter={{lat: 53.54992, lng: 10.00678}}
                 styles={selectedMapStyle}
                 mapTypeId={widgetSettings.map.type}
             >
-                <Markers points={points} onMarkerClick={(_marker: Marker, point: MapPoint) => handleMarkerClick(point)}/>
+                <Markers key={`Markers-nop`} points={points} onMarkerClick={(_marker: Marker, point: MapPoint) => handleMarkerClick(point)}/>
             </Map>
             <div className={classNames(styles.Searching, positionSearching && styles.IsSearching)}>
                 <svg className={styles.Spinner} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

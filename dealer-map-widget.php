@@ -3,10 +3,12 @@
  * Plugin Name: Prek - Dealer Map Widget
  * Description: Dealer map and listing
  * Plugin URI:  https://prek.no
- * Version:     1.0.8
+ * Version:     1.0.9
  * Author:      Prek AS <chris@prek.no>
  * Author URI:  https://prek.no
  * Text Domain: dealer-map-widget
+ * GitHub Plugin URI: https://github.com/polaris-nordic/dealer-map-widget
+ * Primary Branch: main
  *
  * Elementor tested up to: 3.19.2
  * Elementor Pro tested up to: 3.19.2
