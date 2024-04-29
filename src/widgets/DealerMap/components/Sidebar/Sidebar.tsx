@@ -81,7 +81,8 @@ export default function Sidebar(props: SidebarProps) {
      * ----------------------------- */
 
     const sidebarClasses = classNames(
-        styles.Sidebar
+        styles.Sidebar,
+        'prek-map-sidebar'
     )
 
     /* ------------------------------ *

@@ -544,9 +544,10 @@ class Elementor_DealerMap_Controls extends \Elementor\Widget_Base
                     'size' => 100,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .prek-map-container' => 'height: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} #prek-dealer-map' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .prek-map-wrapper' => 'height: {{SIZE}}{{UNIT}};',
                     '{{WRAPPER}} .prek-map' => 'height: {{SIZE}}{{UNIT}};',
+                    //'{{WRAPPER}} .prek-map-container' => 'height: {{SIZE}}{{UNIT}};',
+                    //'{{WRAPPER}} #prek-dealer-map' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -619,6 +620,37 @@ class Elementor_DealerMap_Controls extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Sidebar Styles', 'dealer-map-widget'),
                 'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'prek_layout_sidebar_height',
+            [
+                'label' => esc_html__( 'Sidebar height', 'dealer-map-widget' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%', 'vh', 'custom' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'vh' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .prek-map-sidebar' => 'height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 

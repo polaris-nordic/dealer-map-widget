@@ -57,7 +57,7 @@ export default function MapView(props: MapViewProps) {
                 gestureHandling={'greedy'}
                 defaultZoom={widgetSettings.map.zoom}
                 disableDefaultUI={true}
-                className={styles.Map}
+                className={classNames(styles.Map, 'prek-map-container')}
                 defaultCenter={{lat: 53.54992, lng: 10.00678}}
                 styles={selectedMapStyle}
                 mapTypeId={widgetSettings.map.type}
