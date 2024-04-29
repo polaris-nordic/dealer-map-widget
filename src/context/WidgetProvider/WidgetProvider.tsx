@@ -159,11 +159,15 @@ export default function WidgetProvider(props: WidgetProviderProps) {
     const handleMarkerClick = (point: MapPoint) => {
         // Get dealer by point.id
         const dealerIndex = dealers.findIndex((dealer: IDealer) => dealer.id === point.id);
+        const dealer = dealers[dealerIndex];
 
-        if (dealerIndex) {
-            setActiveDealer(dealers[dealerIndex]);
-            setActiveDealerIndex(dealerIndex);
-        }
+        const sortedDealers = sortDealersByLocation(dealers, {
+            lat: dealer.lat,
+            lon: dealer.lon
+        });
+        setDealers(sortedDealers);
+
+        handleDealerSelected(dealer);
     }
 
     const searchUserLocation = () => {
