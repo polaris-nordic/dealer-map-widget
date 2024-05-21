@@ -174,6 +174,19 @@ class Elementor_DealerMap_Controls extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'prek_dm_settings_storecookie',
+            [
+                'label' => esc_html__('Allow selecting dealer', 'dealer-map-widget'),
+                'description' => esc_html__("This will add a button and store a cookie with the users selected dealer.", 'dealer-map-widget'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'Yes', 'dealer-map-widget' ),
+                'label_off' => esc_html__( 'No', 'dealer-map-widget' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
         $this->end_controls_section();
 
         /**

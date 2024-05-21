@@ -5,6 +5,7 @@ import {I18n} from "react-simple-i18n/src/context";
 import {useGeolocation, UseGeolocationReturnType} from "~/hooks";
 import {Post, useEntityRecords} from "@wordpress/core-data";
 import {sortDealersByLocation} from "~/context/WidgetProvider/utils";
+import Cookies from 'js-cookie';
 
 /* ------------------------------ *
  * Context
@@ -26,6 +27,9 @@ export interface WidgetContextProps {
     /* New methods */
     handleLocationFound: (location: ILocation) => void
     handleDealerSelected: (dealer: IDealer) => void
+    /* My Dealer */
+    myDealer: IDealer | null
+    setMyDealer: Dispatch<SetStateAction<IDealer | null>>
     /* Current User Position */
     positionSearching: boolean
     userLocation: UseGeolocationReturnType
@@ -37,8 +41,8 @@ export interface WidgetContextProps {
 
 export const WidgetContext = createContext<WidgetContextProps>({
     widgetSettings: null!,
-    i18n: () => {},
-    t: () => {},
+    i18n: {} as I18n,
+    t: () => '',
     /* Dealers */
     dealers: [],
     setDealers: () => {},
@@ -51,9 +55,12 @@ export const WidgetContext = createContext<WidgetContextProps>({
     /* New methods */
     handleLocationFound: () => {},
     handleDealerSelected: () => {},
+    /* My Dealer */
+    myDealer: null!,
+    setMyDealer: () => {},
     /* Current User Position */
     positionSearching: null!,
-    userPosition: null!,
+    userLocation: null!,
     setUserLocation: () => {},
     searchUserLocation: () => {},
     /* Map */
@@ -76,6 +83,7 @@ export default function WidgetProvider(props: WidgetProviderProps) {
         children
     } = props
 
+    const [myDealer, setMyDealer] = useState<IDealer | null>(null);
     const [positionSearching, setPositionSearching] = useState<boolean>(null!);
     const [userLocation, setUserLocation] = useState<ILocation>(null!);
     const [activeDealer, setActiveDealer] = useState<IDealer>(null!);
@@ -130,6 +138,23 @@ export default function WidgetProvider(props: WidgetProviderProps) {
             });
         }
     }, [geoObj]);
+
+    // When myDealer is set, update cookie
+    useEffect(() => {
+        if (myDealer) {
+            Cookies.set('dmw-dealer', JSON.stringify(myDealer));
+        } else {
+            Cookies.remove('dmw-dealer');
+        }
+    }, [myDealer]);
+
+    // If cookie is set, set myDealer
+    useEffect(() => {
+        const cookieDealer = Cookies.get('dmw-dealer');
+        if (cookieDealer) {
+            setMyDealer(JSON.parse(cookieDealer));
+        }
+    }, []);
 
     /* ------------------------------ *
      * Handlers
@@ -193,6 +218,9 @@ export default function WidgetProvider(props: WidgetProviderProps) {
         /* New methods */
         handleLocationFound,
         handleDealerSelected,
+        /* My Dealer */
+        myDealer,
+        setMyDealer,
         /* Dealers */
         dealers,
         setDealers,

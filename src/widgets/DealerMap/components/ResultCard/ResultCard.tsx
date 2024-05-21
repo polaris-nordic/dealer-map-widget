@@ -4,6 +4,7 @@ import {classNames} from '~/lib/helpers'
 import { IDealer } from '~/types';
 import {GlobeAltIcon, MapIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import {useWidget} from "~/context";
+import Cookies from 'js-cookie';
 import {useMap} from "@vis.gl/react-google-maps";
 import {Flex} from "~/ui";
 import {decodeEntities} from "@wordpress/html-entities";
@@ -26,7 +27,14 @@ export default function ResultCard(props: ResultCardProps) {
     } = props
 
     const map = useMap();
-    const { widgetSettings, activeDealer, handleDealerSelected } = useWidget()
+    const { 
+        widgetSettings, 
+        activeDealer, 
+        handleDealerSelected, 
+        myDealer,
+        setMyDealer,
+        t 
+    } = useWidget()
 
     /* ------------------------------ *
      * Effects
@@ -49,6 +57,15 @@ export default function ResultCard(props: ResultCardProps) {
 
     const handleDealerClicked = () => {
         handleDealerSelected(dealer)
+    }
+
+    const handleMyDealerSelected = () => {
+        if (myDealer?.id === dealer.id) {
+            setMyDealer(null)
+            return
+        }
+
+        setMyDealer(dealer)
     }
 
     /* ------------------------------ *
@@ -103,6 +120,14 @@ export default function ResultCard(props: ResultCardProps) {
                                 <a href={dealer.meta[widgetSettings.dealer.extra.website]} target="_blank">{ dealer.meta[widgetSettings.dealer.extra.website] }</a>
                             </Flex>
                         )}
+                    </div>
+                    <div className={styles.Actions}>
+                        { (widgetSettings.dealer.selectedCookie) && (
+                            <button className={styles.SelectDealer} onClick={handleMyDealerSelected} type="button">{ myDealer?.id === dealer.id ? t('notMyDealer', 'Not my dealer') : t('setAsMyDealer', 'Set as my dealer') }</button>
+                        )}
+                        <a href={`https://www.google.com/maps/dir/?api=1&destination=${dealer.lat},${dealer.lon}&destination_place_id=${dealer.placeId}`} target="_blank" className={styles.Directions}>
+                            { t('getDirections', 'Get directions') }
+                        </a>
                     </div>
                 </div>
             )}

@@ -1,5 +1,5 @@
 .ResultCard
-  @apply rounded-lg p-4 flex-shrink-0 cursor-pointer
+  @apply rounded-none p-4 flex-shrink-0 cursor-pointer
   @apply border border-gray-300
   @apply transition-colors duration-200
   @apply flex flex-col gap-1
@@ -33,3 +33,23 @@
 
       a
         @apply hover:underline
+
+    .Actions
+      @apply flex flex-col gap-y-2 mt-4
+
+      .SelectDealer, .Directions
+        @apply flex items-center justify-center w-full
+        @apply py-3 px-4 text-sm font-bold rounded-none
+        @apply outline-none
+
+      .SelectDealer
+        @apply bg-black/80 text-white
+
+        &:hover
+          @apply bg-black
+
+      .Directions
+        @apply bg-transparent border border-black text-black
+
+        &:hover
+          @apply bg-gray-50

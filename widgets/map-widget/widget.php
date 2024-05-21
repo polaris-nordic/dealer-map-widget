@@ -44,6 +44,7 @@ class Elementor_DealerMap_Widget extends Elementor_DealerMap_Controls
             'dealer' => [
                 'postType' => $settings['prek_dm_dealer_posttype'] ?? 'post',
                 'googlePlaceEnabled' => !!($settings['prek_dm_dealer_field_placeid_enable'] === 'yes'),
+                'selectedCookie' => $settings['prek_dm_settings_storecookie'] === 'yes',
                 'fieldTitle' => $settings['prek_dm_dealer_field_title'] ?? 'title',
                 'fieldTitleMeta' => $settings['prek_dm_dealer_field_title_meta'] ?? '',
                 'fieldLatitude' => $settings['prek_dm_dealer_field_lat'] ?? '',
@@ -104,6 +105,7 @@ class Elementor_DealerMap_Widget extends Elementor_DealerMap_Controls
             dealer: {
                 postType: settings.prek_dm_dealer_posttype || 'post',
                 googlePlaceEnabled: settings.prek_dm_dealer_field_placeid_enable === 'yes',
+                selectedCookie: settings.prek_dm_settings_storecookie === 'yes',
                 fieldTitle: settings.prek_dm_dealer_field_title || 'title',
                 fieldTitleMeta: settings.prek_dm_dealer_field_title_meta || '',
                 fieldLatitude: settings.prek_dm_dealer_field_lat || '',

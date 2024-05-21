@@ -35,6 +35,7 @@ export interface LayoutSettings {
 export interface DealerSettings {
     postType: string
     googlePlaceEnabled: boolean
+    selectedCookie: boolean
     fieldTitle: string
     fieldTitleMeta: string
     fieldLatitude: number
