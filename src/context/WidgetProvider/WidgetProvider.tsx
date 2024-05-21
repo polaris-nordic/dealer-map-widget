@@ -142,7 +142,7 @@ export default function WidgetProvider(props: WidgetProviderProps) {
     // When myDealer is set, update cookie
     useEffect(() => {
         if (myDealer) {
-            Cookies.set('dmw-dealer', JSON.stringify(myDealer));
+            Cookies.set('dmw-dealer', JSON.stringify(myDealer), { expires: 365 });
         } else {
             Cookies.remove('dmw-dealer');
         }
