@@ -187,6 +187,28 @@ class Elementor_DealerMap_Controls extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'prek_dm_settings_storecookie_injectclass',
+            [
+                'label' => esc_html__('Dealer text query selector', 'dealer-map-widget'),
+                'description' => esc_html__("When defined, we will inject the dealer title in this field when selected.", 'dealer-map-widget'),
+                'placeholder' => '.dealer-title h2',
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => '',
+                'label_block' => true,
+                'required' => true,
+                'ai' => [
+                    'active' => false,
+                ],
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'condition' => [
+                    'prek_dm_settings_storecookie' => 'yes',
+                ]
+            ]
+        );
+
         $this->end_controls_section();
 
         /**

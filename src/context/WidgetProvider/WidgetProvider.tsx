@@ -142,9 +142,22 @@ export default function WidgetProvider(props: WidgetProviderProps) {
     // When myDealer is set, update cookie
     useEffect(() => {
         if (myDealer) {
-            Cookies.set('dmw-dealer', JSON.stringify(myDealer), { expires: 365 });
-        } else {
-            Cookies.remove('dmw-dealer');
+            Cookies.set('dmw-dealer', JSON.stringify(myDealer), { 
+                expires: 365,
+                sameSite: 'strict',
+                secure: true
+            });
+
+            // Check if client side
+            if (typeof window !== 'undefined' && settings.dealer.selectedCookieInjectClass !== '') {
+                document.querySelectorAll(settings.dealer.selectedCookieInjectClass).forEach((element) => {
+                    // Update innerHTML
+                    element.innerHTML = myDealer.title
+                    
+                    // Set data attributes
+                    element.setAttribute('data-dealer-id', myDealer.id.toString())
+                })
+            }
         }
     }, [myDealer]);
 
@@ -161,7 +174,7 @@ export default function WidgetProvider(props: WidgetProviderProps) {
      * ----------------------------- */
 
     // When Geolocation is found, update userLocation
-    const handleLocationFound = (location: ILocation) => {
+    const handleLocationFound = (location: ILocation, setActiveInList: boolean = true) => {
         setUserLocation(location);
         setPositionSearching(false);
 

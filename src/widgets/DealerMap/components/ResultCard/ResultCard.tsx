@@ -86,6 +86,8 @@ export default function ResultCard(props: ResultCardProps) {
      * Return
      * ----------------------------- */
 
+    const withHttps = (url: string) => url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schemma, nonSchemmaUrl) => schemma ? match : `https://${nonSchemmaUrl}`);
+
     //const directionUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURI(`${dealer.address},${dealer.zipcode} ${dealer.city}`)}&destination_place_id=${dealer.placeId}`
     // https://www.google.com/maps/dir/?api=1&destination=59.226366,10.953466&destination_place_id=ChIJzZ3c3Z5ZQUYR3Jn3Q9JjgQI
     // https://www.google.com/maps/dir/?api=1&destination=59.226366,10.953466&destination_place_id=ChIJG8nSGcLhQEYR56VL-bfK2ao
@@ -117,7 +119,7 @@ export default function ResultCard(props: ResultCardProps) {
                         { dealer.meta[widgetSettings.dealer.extra.website] && (
                             <Flex justifyContent="start" gap={1} className={styles.Row}>
                                 <GlobeAltIcon className={styles.Icon}/>
-                                <a href={dealer.meta[widgetSettings.dealer.extra.website]} target="_blank">{ dealer.meta[widgetSettings.dealer.extra.website] }</a>
+                                <a href={withHttps(dealer.meta[widgetSettings.dealer.extra.website])} target="_blank">{ dealer.meta[widgetSettings.dealer.extra.website] }</a>
                             </Flex>
                         )}
                     </div>

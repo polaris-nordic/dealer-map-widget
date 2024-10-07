@@ -1,6 +1,6 @@
 {
   "name": "dealer-map-widget",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "main": "index.js",
   "license": "MIT",
   "scripts": {

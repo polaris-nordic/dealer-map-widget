@@ -1,5 +1,6 @@
 export default {
     sidebarTitle: 'Etsi jälleenmyyjäsi',
+    searchPlaceholder: 'Etsi jälleen myyjääsi...',
     gettingPosition: 'Etsitään sijaintiasi...',
     messageBeforeLink: 'Hae käyttäen osoitetta, paikkakuntaa, aluetta tai postinumeroa. Tai',
     messageLinkText: 'käytä sijaintiasi',

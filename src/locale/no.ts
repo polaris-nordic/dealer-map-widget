@@ -1,5 +1,6 @@
 export default {
     sidebarTitle: 'Finn din forhandler',
+    searchPlaceholder: 'Søk etter din forhandler...',
     gettingPosition: 'Finner din posisjon...',
     messageBeforeLink: 'Søk etter adresse, by eller postnummer eller se',
     messageLinkText: 'forhandlere i nærheten',
