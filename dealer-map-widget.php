@@ -3,7 +3,7 @@
  * Plugin Name: Prek - Dealer Map Widget
  * Description: Dealer map and listing
  * Plugin URI:  https://prek.no
- * Version:     1.1.6
+ * Version:     1.1.7
  * Author:      Prek AS <chris@prek.no>
  * Author URI:  https://prek.no
  * Text Domain: dealer-map-widget
